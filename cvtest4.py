@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 """
+Created on Wed Nov 20 17:25:21 2019
+
+@author: manakamura
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Wed Nov 20 11:54:22 2019
 
 @author: manakamura
@@ -78,7 +85,7 @@ def func(imageArray,x,y,color_a,color_b,color_c,color_d):
     #=====
     xoffset = x+barsize*2
     yoffset = y+barsize*2
-    pixsize = 6
+    pixsize = 3
     tmp = str(pixsize) + "*" + str(pixsize)
     cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_PLAIN, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
@@ -101,7 +108,7 @@ def func(imageArray,x,y,color_a,color_b,color_c,color_d):
     #=====
     xoffset = x+barsize*3
     yoffset = y+barsize*2
-    pixsize = 5
+    pixsize = 2
     tmp = str(pixsize) + "*" + str(pixsize)
     cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_PLAIN, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
@@ -124,75 +131,6 @@ def func(imageArray,x,y,color_a,color_b,color_c,color_d):
     #=====
     xoffset = x+barsize*4
     yoffset = y+barsize*2
-    pixsize = 4
-    tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_PLAIN, 0.6, color_font , 1, cv2.LINE_AA)
-    lim = barsize//pixsize
-    for j in range(0,lim*2,2):
-        for k in range(0,lim,2):
-            for h in range(yoffset+j*pixsize, yoffset+j*pixsize+pixsize):
-                for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
-                    imageArray[h, w] = color_a
-            for h in range(yoffset+j*pixsize+pixsize, yoffset+j*pixsize+2*pixsize):
-                for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
-                    imageArray[h, w] = color_b
-            for h in range(yoffset+j*pixsize, yoffset+j*pixsize+pixsize):
-                for w in range(xoffset+k*pixsize+pixsize, xoffset+k*pixsize+2*pixsize):
-                    imageArray[h, w] = color_c
-            for h in range(yoffset+j*pixsize+pixsize, yoffset+j*pixsize+2*pixsize):
-                for w in range(xoffset+k*pixsize+pixsize, xoffset+k*pixsize+2*pixsize):
-                    imageArray[h, w] = color_d
-    #=====
-    
-    #=====
-    xoffset = x+barsize*5
-    yoffset = y+barsize*2
-    pixsize = 3
-    tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_PLAIN, 0.6, color_font , 1, cv2.LINE_AA)
-    lim = barsize//pixsize
-    for j in range(0,lim*2,2):
-        for k in range(0,lim,2):
-            for h in range(yoffset+j*pixsize, yoffset+j*pixsize+pixsize):
-                for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
-                    imageArray[h, w] = color_a
-            for h in range(yoffset+j*pixsize+pixsize, yoffset+j*pixsize+2*pixsize):
-                for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
-                    imageArray[h, w] = color_b
-            for h in range(yoffset+j*pixsize, yoffset+j*pixsize+pixsize):
-                for w in range(xoffset+k*pixsize+pixsize, xoffset+k*pixsize+2*pixsize):
-                    imageArray[h, w] = color_c
-            for h in range(yoffset+j*pixsize+pixsize, yoffset+j*pixsize+2*pixsize):
-                for w in range(xoffset+k*pixsize+pixsize, xoffset+k*pixsize+2*pixsize):
-                    imageArray[h, w] = color_d
-    #=====
-    
-    #=====
-    xoffset = x+barsize*6
-    yoffset = y+barsize*2
-    pixsize = 2
-    tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_PLAIN, 0.6, color_font , 1, cv2.LINE_AA)
-    lim = barsize//pixsize
-    for j in range(0,lim*2,2):
-        for k in range(0,lim,2):
-            for h in range(yoffset+j*pixsize, yoffset+j*pixsize+pixsize):
-                for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
-                    imageArray[h, w] = color_a
-            for h in range(yoffset+j*pixsize+pixsize, yoffset+j*pixsize+2*pixsize):
-                for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
-                    imageArray[h, w] = color_b
-            for h in range(yoffset+j*pixsize, yoffset+j*pixsize+pixsize):
-                for w in range(xoffset+k*pixsize+pixsize, xoffset+k*pixsize+2*pixsize):
-                    imageArray[h, w] = color_c
-            for h in range(yoffset+j*pixsize+pixsize, yoffset+j*pixsize+2*pixsize):
-                for w in range(xoffset+k*pixsize+pixsize, xoffset+k*pixsize+2*pixsize):
-                    imageArray[h, w] = color_d
-    #=====
-    
-    #=====
-    xoffset = x+barsize*7
-    yoffset = y+barsize*2
     pixsize = 1
     tmp = str(pixsize) + "*" + str(pixsize)
     cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_PLAIN, 0.6, color_font , 1, cv2.LINE_AA)
@@ -212,7 +150,7 @@ def func(imageArray,x,y,color_a,color_b,color_c,color_d):
                 for w in range(xoffset+k*pixsize+pixsize, xoffset+k*pixsize+2*pixsize):
                     imageArray[h, w] = color_d
     #=====
-
+    
 
     
 
@@ -232,24 +170,35 @@ color_c=[128, 248, 255] #Yellow
 color_d=[255,255,255]
 
 #a,b,c 底上げ
-color_a=[255, 255, 128]
-color_b=[255, 128, 255]
-color_c=[128, 255, 255]
-color_d=[255,255,255]
-
 color_a=[255, 255, 0]
 color_b=[255, 0, 255]
 color_c=[0, 255, 255]
 color_d=[255,255,255]
 
+color_a=[255, 255, 128]
+color_b=[255, 128, 255]
+color_c=[128, 255, 255]
+color_d=[255,255,255]
+
+color_a=[255, 255, 224]
+color_b=[255, 224, 255]
+color_c=[224, 255, 255]
+color_d=[255,255,255]
+
+color_a=[255, 255, 192]
+color_b=[255, 192, 255]
+color_c=[192, 255, 255]
+color_d=[255,255,255]
+
+
 color_w=[255,255,255]
 color_k=[0,0,0]
 
 #CMYの内1色無いver
-func(imageArray,0,0,color_b,color_w,color_c,color_d)
-func(imageArray,0,300,color_a,color_w,color_c,color_d)
-func(imageArray,400,0,color_a,color_b,color_w,color_d)
-func(imageArray,400,300,color_a,color_c,color_c,color_b)
+func(imageArray,0,0,color_k,color_b,color_c,color_d)
+func(imageArray,0,300,color_a,color_k,color_c,color_d)
+func(imageArray,400,0,color_a,color_b,color_k,color_d)
+func(imageArray,400,300,color_a,color_b,color_c,color_d)
 print("===")
 
 #a,b,cの輝度を統一

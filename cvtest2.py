@@ -231,12 +231,22 @@ color_a=[232, 206, 128] #Cyan
 color_b=[198, 128, 246] #Magenta
 color_c=[128, 248, 255] #Yellow
 color_d=[255,255,255]
+#a,b,c 底上げ2
+color_a=[255, 255, 192]
+color_b=[255, 192, 255]
+color_c=[192, 255, 255]
+color_d=[255,255,255]
 func(imageArray,0,300,color_a,color_b,color_c,color_d)
 
 #a,b,c 底上げ
 color_a=[255, 255, 128]
 color_b=[255, 128, 255]
 color_c=[128, 255, 255]
+color_d=[255,255,255]
+#a,b,c 底上げ3
+color_a=[255, 255, 224]
+color_b=[255, 224, 255]
+color_c=[224, 255, 255]
 color_d=[255,255,255]
 func(imageArray,400,0,color_a,color_b,color_c,color_d)
 
