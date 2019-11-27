@@ -174,6 +174,11 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     tmp = "BGR:"
     cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+6),cv2.FONT_HERSHEY_PLAIN, 0.5, color_font , 1, cv2.LINE_AA)
 
+    if(color_num<3):
+        color_num = 3
+    if(color_num>4):
+        color_num = 4
+
     for h in range(y+gap*0, y+gap*1):
         for w in range(x+gap*0, x+gap*1):
             imageArray[h, w] = color_a
@@ -219,7 +224,7 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     tmp = str(barsize*2) + "*" + str(pixsize)
     cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
-    for k in range(0,lim,3):
+    for k in range(0,lim,color_num):
         for h in range(yoffset, yoffset+barsize*2):
             for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
                 imageArray[h, w] = color_a
@@ -229,6 +234,10 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
         for h in range(yoffset, yoffset+barsize*2):
             for w in range(xoffset+k*pixsize+2*pixsize, xoffset+k*pixsize+3*pixsize):
                 imageArray[h, w] = color_c
+        if(color_num==4):
+            for h in range(yoffset, yoffset+barsize*2):
+                for w in range(xoffset+k*pixsize+3*pixsize, xoffset+k*pixsize+4*pixsize):
+                    imageArray[h, w] = color_d
     #=====
     #=====
     xoffset = x+barsize*3
@@ -237,7 +246,7 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     tmp = str(barsize*2) + "*" + str(pixsize)
     cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
-    for k in range(0,lim,3):
+    for k in range(0,lim,color_num):
         for h in range(yoffset, yoffset+barsize*2):
             for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
                 imageArray[h, w] = color_a
@@ -247,16 +256,19 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
         for h in range(yoffset, yoffset+barsize*2):
             for w in range(xoffset+k*pixsize+2*pixsize, xoffset+k*pixsize+3*pixsize):
                 imageArray[h, w] = color_c
+        if(color_num==4):
+            for h in range(yoffset, yoffset+barsize*2):
+                for w in range(xoffset+k*pixsize+3*pixsize, xoffset+k*pixsize+4*pixsize):
+                    imageArray[h, w] = color_d
     #=====
     #=====
-    if(color_num>=3):
     xoffset = x+barsize*4
     yoffset = y+barsize*2
     pixsize = 2
     tmp = str(barsize*2) + "*" + str(pixsize)
     cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
-    for k in range(0,lim,3):
+    for k in range(0,lim,color_num):
         for h in range(yoffset, yoffset+barsize*2):
             for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
                 imageArray[h, w] = color_a
@@ -266,6 +278,10 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
         for h in range(yoffset, yoffset+barsize*2):
             for w in range(xoffset+k*pixsize+2*pixsize, xoffset+k*pixsize+3*pixsize):
                 imageArray[h, w] = color_c
+        if(color_num==4):
+            for h in range(yoffset, yoffset+barsize*2):
+                for w in range(xoffset+k*pixsize+3*pixsize, xoffset+k*pixsize+4*pixsize):
+                    imageArray[h, w] = color_d
     #=====
     #=====
     xoffset = x+barsize*5
@@ -274,7 +290,7 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     tmp = str(barsize*2) + "*" + str(pixsize)
     cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
-    for k in range(0,lim,3):
+    for k in range(0,lim,color_num):
         for h in range(yoffset, yoffset+barsize*2):
             for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
                 imageArray[h, w] = color_a
@@ -284,13 +300,22 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
         for h in range(yoffset, yoffset+barsize*2):
             for w in range(xoffset+k*pixsize+2*pixsize, xoffset+k*pixsize+3*pixsize):
                 imageArray[h, w] = color_c
+        if(color_num==4):
+            for h in range(yoffset, yoffset+barsize*2):
+                for w in range(xoffset+k*pixsize+3*pixsize, xoffset+k*pixsize+4*pixsize):
+                    imageArray[h, w] = color_d
     #=====
     
 
-def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d):
+def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     tmp = "BGR:"
     cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+6),cv2.FONT_HERSHEY_PLAIN, 0.5, color_font , 1, cv2.LINE_AA)
 
+    if(color_num<3):
+        color_num = 3
+    if(color_num>4):
+        color_num = 4
+        
     for h in range(y+gap*0, y+gap*1):
         for w in range(x+gap*0, x+gap*1):
             imageArray[h, w] = color_a
@@ -338,12 +363,14 @@ def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d):
     lim = barsize//pixsize
     for j in range(0,lim*2,1):
         for k in range(0,lim,1):
-            if((j+k)%3==0):
+            if((j+k)%color_num==0):
                 tmp_color = color_a
-            if((j+k)%3==1):
+            if((j+k)%color_num==1):
                 tmp_color = color_b
-            if((j+k)%3==2):
+            if((j+k)%color_num==2):
                 tmp_color = color_c
+            if((j+k)%color_num==3):
+                tmp_color = color_d
             for h in range(yoffset+j*pixsize, yoffset+j*pixsize+pixsize):
                 for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
                     imageArray[h, w] = tmp_color
@@ -357,12 +384,14 @@ def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d):
     lim = barsize//pixsize
     for j in range(0,lim*2,1):
         for k in range(0,lim,1):
-            if((j+k)%3==0):
+            if((j+k)%color_num==0):
                 tmp_color = color_a
-            if((j+k)%3==1):
+            if((j+k)%color_num==1):
                 tmp_color = color_b
-            if((j+k)%3==2):
+            if((j+k)%color_num==2):
                 tmp_color = color_c
+            if((j+k)%color_num==3):
+                tmp_color = color_d
             for h in range(yoffset+j*pixsize, yoffset+j*pixsize+pixsize):
                 for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
                     imageArray[h, w] = tmp_color
@@ -376,12 +405,14 @@ def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d):
     lim = barsize//pixsize
     for j in range(0,lim*2,1):
         for k in range(0,lim,1):
-            if((j+k)%3==0):
+            if((j+k)%color_num==0):
                 tmp_color = color_a
-            if((j+k)%3==1):
+            if((j+k)%color_num==1):
                 tmp_color = color_b
-            if((j+k)%3==2):
+            if((j+k)%color_num==2):
                 tmp_color = color_c
+            if((j+k)%color_num==3):
+                tmp_color = color_d
             for h in range(yoffset+j*pixsize, yoffset+j*pixsize+pixsize):
                 for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
                     imageArray[h, w] = tmp_color
@@ -395,12 +426,14 @@ def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d):
     lim = barsize//pixsize
     for j in range(0,lim*2,1):
         for k in range(0,lim,1):
-            if((j+k)%3==0):
+            if((j+k)%color_num==0):
                 tmp_color = color_a
-            if((j+k)%3==1):
+            if((j+k)%color_num==1):
                 tmp_color = color_b
-            if((j+k)%3==2):
+            if((j+k)%color_num==2):
                 tmp_color = color_c
+            if((j+k)%color_num==3):
+                tmp_color = color_d
             for h in range(yoffset+j*pixsize, yoffset+j*pixsize+pixsize):
                 for w in range(xoffset+k*pixsize, xoffset+k*pixsize+pixsize):
                     imageArray[h, w] = tmp_color
@@ -544,9 +577,9 @@ print("===")
 color_w=[255,255,255]
 color_k=[0,0,0]
 
-color_a=[255, 255, 224]
-color_b=[255, 224, 255]
-color_c=[224, 255, 255]
+color_a=[255, 255, 160]
+color_b=[255, 160, 255]
+color_c=[160, 255, 255]
 color_d=[255, 255, 255]
 
 func_stripe(imageArray,0,0,color_k,color_b,color_c,color_d,4)
@@ -564,11 +597,22 @@ print("===")
 #func(imageArray,0,300,color_a,color_k,color_c,color_d)
 #func(imageArray,400,0,color_a,color_b,color_k,color_d)
 #func(imageArray,400,300,color_a,color_b,color_c,color_d)
-
-#func_mosaic(imageArray,0,0,color_k,color_b,color_c,color_d)
-#func_mosaic(imageArray,0,300,color_a,color_k,color_c,color_d)
-#func_mosaic(imageArray,400,0,color_a,color_b,color_k,color_d)
-#func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d)
+#func_stripe(imageArray,0,0,color_k,color_b,color_c,color_d,3)
+#func_stripe(imageArray,0,300,color_a,color_k,color_c,color_d,3)
+#func_stripe(imageArray,400,0,color_a,color_b,color_k,color_d,3)
+#func_stripe(imageArray,400,300,color_a,color_b,color_c,color_d,3)
+#func_stripe(imageArray,0,0,color_k,color_b,color_c,color_d,4)
+#func_stripe(imageArray,0,300,color_a,color_k,color_c,color_d,4)
+#func_stripe(imageArray,400,0,color_a,color_b,color_k,color_d,4)
+#func_stripe(imageArray,400,300,color_a,color_b,color_c,color_d,4)
+#func_mosaic(imageArray,0,0,color_k,color_b,color_c,color_d,3)
+#func_mosaic(imageArray,0,300,color_a,color_k,color_c,color_d,3)
+#func_mosaic(imageArray,400,0,color_a,color_b,color_k,color_d,3)
+#func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,3)
+#func_mosaic(imageArray,0,0,color_k,color_b,color_c,color_d,4)
+#func_mosaic(imageArray,0,300,color_a,color_k,color_c,color_d,4)
+#func_mosaic(imageArray,400,0,color_a,color_b,color_k,color_d,4)
+#func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,4)
 #func_delta(imageArray,0,0,color_k,color_b,color_c,color_d)
 #func_delta(imageArray,0,300,color_a,color_k,color_c,color_d)
 #func_delta(imageArray,400,0,color_a,color_b,color_k,color_d)
