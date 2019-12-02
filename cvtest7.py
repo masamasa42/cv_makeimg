@@ -32,7 +32,7 @@ for h in range(height):
 cv2.imwrite("blank.bmp", imageArray);
 
 
-def func(imageArray,x,y,color_a,color_b,color_c,color_d):
+def func_makeimg(imageArray,x,y,color_a,color_b,color_c,color_d):
     #global imageArray
     #print(x)
     #print(y)
@@ -593,10 +593,10 @@ print("===")
 #func_mosaic(imageArray,0,300,color_a,color_b,color_c,color_d)
 #func_delta(imageArray,400,0,color_a,color_b,color_c,color_d)
 
-#func(imageArray,0,0,color_a,color_k,color_c,color_d)
-#func(imageArray,0,300,color_a,color_k,color_c,color_d)
-#func(imageArray,400,0,color_a,color_b,color_k,color_d)
-#func(imageArray,400,300,color_a,color_b,color_c,color_d)
+#func_makeimg(imageArray,0,0,color_a,color_k,color_c,color_d)
+#func_makeimg(imageArray,0,300,color_a,color_k,color_c,color_d)
+#func_makeimg(imageArray,400,0,color_a,color_b,color_k,color_d)
+#func_makeimg(imageArray,400,300,color_a,color_b,color_c,color_d)
 #func_stripe(imageArray,0,0,color_k,color_b,color_c,color_d,3)
 #func_stripe(imageArray,0,300,color_a,color_k,color_c,color_d,3)
 #func_stripe(imageArray,400,0,color_a,color_b,color_k,color_d,3)
