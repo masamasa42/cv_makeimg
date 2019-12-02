@@ -4,33 +4,8 @@ Created on Mon Nov 25 13:40:32 2019
 
 @author: manakamura
 """
-#ストライプ,モザイク,デルタ型対応
-
 import cv2
 import numpy as np
-
-
-color_bg = [255,255,255]
-color_font = [0,0,0]
-
-#CMYW [B,G,R]の並び 配色は https://ironodata.info/irononamae/list.php を参考
-width=800
-height=600
-
-gap = width//16
-offset = height//4
-barsize = width//16
-pixsize = barsize
-
-imageArray = np.zeros((height, width, 3), np.uint8)
-size = imageArray.shape[:2]
-
-###背景色
-for h in range(height):
-    for w in range(width):
-        imageArray[h, w] = color_bg
-cv2.imwrite("blank.bmp", imageArray);
-
 
 def func_makeimg(imageArray,x,y,color_a,color_b,color_c,color_d):
     #global imageArray
@@ -570,75 +545,67 @@ def func_delta(imageArray,x,y,color_a,color_b,color_c,color_d):
                     imageArray[h, w] = tmp_color
     #=====
 
-    
-print("===")
-# 128 160 192 224 256
-#M調整
-color_w=[255,255,255]
-color_k=[0,0,0]
 
+def makeimg(filename,color_a,color_ak,color_b,color_bk,color_c,color_ck):
+
+
+    imageArray = np.zeros((height, width, 3), np.uint8)
+    size = imageArray.shape[:2]
+    
+    for h in range(height):
+        for w in range(width):
+            imageArray[h, w] = color_bg
+    cv2.imwrite("blank.bmp", imageArray);
+     
+    print("===")
+    func_mosaic(imageArray,0,0,color_ak,color_b,color_c,color_d,3)
+    func_mosaic(imageArray,0,300,color_a,color_bk,color_c,color_d,3)
+    func_mosaic(imageArray,400,0,color_a,color_b,color_ck,color_d,3)
+    func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,3)
+    print("===")
+
+    #func_makeimg(imageArray,0,0,color_a,color_bk,color_c,color_d)
+    #func_makeimg(imageArray,0,300,color_a,color_bk,color_c,color_d)
+    #func_makeimg(imageArray,400,0,color_a,color_b,color_ck,color_d)
+    #func_makeimg(imageArray,400,300,color_a,color_b,color_c,color_d)
+    #func_stripe(imageArray,0,0,color_ak,color_b,color_c,color_d,3)
+    #func_stripe(imageArray,0,300,color_a,color_bk,color_c,color_d,3)
+    #func_stripe(imageArray,400,0,color_a,color_b,color_ck,color_d,3)
+    #func_stripe(imageArray,400,300,color_a,color_b,color_c,color_d,3)
+    #func_stripe(imageArray,0,0,color_ak,color_b,color_c,color_d,4)
+    #func_stripe(imageArray,0,300,color_a,color_bk,color_c,color_d,4)
+    #func_stripe(imageArray,400,0,color_a,color_b,color_ck,color_d,4)
+    #func_stripe(imageArray,400,300,color_a,color_b,color_c,color_d,4)
+    #func_mosaic(imageArray,0,0,color_ak,color_b,color_c,color_d,3)
+    #func_mosaic(imageArray,0,300,color_a,color_bk,color_c,color_d,3)
+    #func_mosaic(imageArray,400,0,color_a,color_b,color_ck,color_d,3)
+    #func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,3)
+    #func_mosaic(imageArray,0,0,color_ak,color_b,color_c,color_d,4)
+    #func_mosaic(imageArray,0,300,color_a,color_bk,color_c,color_d,4)
+    #func_mosaic(imageArray,400,0,color_a,color_b,color_ck,color_d,4)
+    #func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,4)
+    #func_delta(imageArray,0,0,color_ak,color_b,color_c,color_d)
+    #func_delta(imageArray,0,300,color_a,color_bk,color_c,color_d)
+    #func_delta(imageArray,400,0,color_a,color_b,color_ck,color_d)
+    #func_delta(imageArray,400,300,color_a,color_b,color_c,color_d)
+    cv2.imwrite(filename, imageArray)
+
+color_bg = [255,255,255]
+color_font = [0,0,0]
+width=800
+height=600
+gap = width//16
+offset = height//4
+barsize = width//16
+pixsize = barsize
+filename="sample.bmp"
 color_a=[255, 255, 160]
+color_ak=[0,0,0]
 color_b=[255, 160, 255]
+color_bk=[0,0,0]
 color_c=[160, 255, 255]
+color_ck=[0,0,0]
 color_d=[255, 255, 255]
 
-func_stripe(imageArray,0,0,color_k,color_b,color_c,color_d,4)
-func_stripe(imageArray,0,300,color_a,color_k,color_c,color_d,4)
-func_stripe(imageArray,400,0,color_a,color_b,color_k,color_d,4)
-func_stripe(imageArray,400,300,color_a,color_b,color_c,color_d,4)
-
-#stripe 各色テスト
-print("===")
-
-#func_mosaic(imageArray,0,300,color_a,color_b,color_c,color_d)
-#func_delta(imageArray,400,0,color_a,color_b,color_c,color_d)
-
-#func_makeimg(imageArray,0,0,color_a,color_k,color_c,color_d)
-#func_makeimg(imageArray,0,300,color_a,color_k,color_c,color_d)
-#func_makeimg(imageArray,400,0,color_a,color_b,color_k,color_d)
-#func_makeimg(imageArray,400,300,color_a,color_b,color_c,color_d)
-#func_stripe(imageArray,0,0,color_k,color_b,color_c,color_d,3)
-#func_stripe(imageArray,0,300,color_a,color_k,color_c,color_d,3)
-#func_stripe(imageArray,400,0,color_a,color_b,color_k,color_d,3)
-#func_stripe(imageArray,400,300,color_a,color_b,color_c,color_d,3)
-#func_stripe(imageArray,0,0,color_k,color_b,color_c,color_d,4)
-#func_stripe(imageArray,0,300,color_a,color_k,color_c,color_d,4)
-#func_stripe(imageArray,400,0,color_a,color_b,color_k,color_d,4)
-#func_stripe(imageArray,400,300,color_a,color_b,color_c,color_d,4)
-#func_mosaic(imageArray,0,0,color_k,color_b,color_c,color_d,3)
-#func_mosaic(imageArray,0,300,color_a,color_k,color_c,color_d,3)
-#func_mosaic(imageArray,400,0,color_a,color_b,color_k,color_d,3)
-#func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,3)
-#func_mosaic(imageArray,0,0,color_k,color_b,color_c,color_d,4)
-#func_mosaic(imageArray,0,300,color_a,color_k,color_c,color_d,4)
-#func_mosaic(imageArray,400,0,color_a,color_b,color_k,color_d,4)
-#func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,4)
-#func_delta(imageArray,0,0,color_k,color_b,color_c,color_d)
-#func_delta(imageArray,0,300,color_a,color_k,color_c,color_d)
-#func_delta(imageArray,400,0,color_a,color_b,color_k,color_d)
-#func_delta(imageArray,400,300,color_a,color_b,color_c,color_d)
-
-
-
-#a,b,cの輝度を統一
-#color_a=[255, 245, 0]
-#color_b=[244, 0, 253]
-#color_c=[0, 241, 255]
-#color_d=[255,255,255]
-
-#font確認用
-#tmp="123456"
-#x=0
-#y=0
-#cv2.putText(imageArray, tmp, (x+100,y+gap*1+15),cv2.FONT_HERSHEY_SIMPLEX, 0.6, color_font , 1, cv2.LINE_AA)
-#cv2.putText(imageArray, tmp, (x+100,y+gap*1+35),cv2.FONT_HERSHEY_PLAIN, 0.6, color_font , 1, cv2.LINE_AA)
-#cv2.putText(imageArray, tmp, (x+100,y+gap*1+55),cv2.FONT_HERSHEY_DUPLEX, 0.6, color_font , 1, cv2.LINE_AA)
-#cv2.putText(imageArray, tmp, (x+100,y+gap*1+75),cv2.FONT_HERSHEY_COMPLEX, 0.6, color_font , 1, cv2.LINE_AA)
-#cv2.putText(imageArray, tmp, (x+100,y+gap*1+95),cv2.FONT_HERSHEY_TRIPLEX, 0.6, color_font , 1, cv2.LINE_AA)
-#cv2.putText(imageArray, tmp, (x+100,y+gap*1+115),cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
-#cv2.putText(imageArray, tmp, (x+100,y+gap*1+135),cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, 0.6, color_font , 1, cv2.LINE_AA)
-#cv2.putText(imageArray, tmp, (x+100,y+gap*1+155),cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 0.6, color_font , 1, cv2.LINE_AA)
-
-cv2.imwrite("sample.bmp", imageArray)
-
+makeimg(filename,color_a,color_ak,color_b,color_bk,color_c,color_ck)
 
