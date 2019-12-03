@@ -6,6 +6,7 @@ Created on Mon Nov 25 13:40:32 2019
 """
 import cv2
 import numpy as np
+import os
 
 def func_makeimg(imageArray,x,y,color_a,color_b,color_c,color_d):
     #global imageArray
@@ -603,30 +604,92 @@ gap = width//16
 offset = height//4
 barsize = width//16
 pixsize = barsize
-
 #色指定はそれぞれbgr順
 
-color_a_num=2
-color_an=[1,3]
-color_a=[[198,196,180],
-[160,119,36]]
-color_ak=[[130,124,109],
-[111,70,0]]
+#ファイルからデータ読み込み
+if(os.path.exists('./cvtest_data.txt')):
+    fileobj = open('./cvtest_data.txt')
+    data = fileobj.read()
+    fileobj.close()
+#    print(data)
+#    print(data[3])#3mojime 0から開始
+#    print(lines[1])#2行目
+    lines = data.split('\n') # 改行で区切る(改行文字そのものは戻り値のデータには含まれない)
 
-color_b_num=2
-color_bn=[18,17]
-color_b=[[110,117,206],
-[145,80,195]]
-color_bk=[[83,84,147],
-[105,56,136]]
+    tmp = lines[0].split(',')
+    color_a_num,color_b_num,color_c_num = list(map(lambda a: int(a), tmp))
 
-color_c_num=2
-color_cn=[46,40]
-color_c=[[54,188,197],
-[0,161,203]]
-color_ck=[[36,122,125],
-[0,118,149]]
+    color_a=[]
+    color_an=[]
+    color_ak=[]
+    color_b=[]
+    color_bn=[]
+    color_bk=[]
+    color_c=[]
+    color_cn=[]
+    color_ck=[]
+    for i in range(1,color_a_num+1):
+        tmp = lines[i].split(',')
+        tmpn=0
+        tmp_c1=[0,0,0]
+        tmp_c2=[0,0,0]
+        tmpn,tmp_c1[0],tmp_c1[1],tmp_c1[2],tmp_c2[0],tmp_c2[1],tmp_c2[2]= list(map(lambda a: int(a), tmp))
+        color_an.append(tmpn)
+        color_a.append(tmp_c1)
+        color_ak.append(tmp_c2)
+    for i in range(color_a_num+1,color_a_num+1+color_b_num):
+        tmp = lines[i].split(',')
+        tmpn=0
+        tmp_c1=[0,0,0]
+        tmp_c2=[0,0,0]
+        tmpn,tmp_c1[0],tmp_c1[1],tmp_c1[2],tmp_c2[0],tmp_c2[1],tmp_c2[2]= list(map(lambda a: int(a), tmp))
+        color_bn.append(tmpn)
+        color_b.append(tmp_c1)
+        color_bk.append(tmp_c2)
+    for i in range(color_a_num+1+color_b_num,color_a_num+1+color_b_num+color_c_num):
+        tmp = lines[i].split(',')
+        tmpn=0
+        tmp_c1=[0,0,0]
+        tmp_c2=[0,0,0]
+        tmpn,tmp_c1[0],tmp_c1[1],tmp_c1[2],tmp_c2[0],tmp_c2[1],tmp_c2[2]= list(map(lambda a: int(a), tmp))
+        color_cn.append(tmpn)
+        color_c.append(tmp_c1)
+        color_ck.append(tmp_c2)
 
+    test_str="color_a_num:"+str(color_a_num)+" color_b_num:"+str(color_b_num)+" color_c_num:"+str(color_c_num)
+    print(test_str)
+    print("data:")
+    print(color_an)
+    print(color_a)
+    print(color_ak)
+    print(color_bn)
+    print(color_b)
+    print(color_bk)
+    print(color_cn)
+    print(color_c)
+    print(color_ck)
+else:
+    color_a_num=1
+    color_an=[1,3]
+    color_a=[[198,196,180],
+    [160,119,36]]
+    color_ak=[[130,124,109],
+    [111,70,0]]
+    
+    color_b_num=1
+    color_bn=[18,17]
+    color_b=[[110,117,206],
+    [145,80,195]]
+    color_bk=[[83,84,147],
+    [105,56,136]]
+    
+    color_c_num=1
+    color_cn=[46,40]
+    color_c=[[54,188,197],
+    [0,161,203]]
+    color_ck=[[36,122,125],
+    [0,118,149]]
+    
 #color_d=[255, 255, 255]
 
 for i in range(0,color_a_num):
