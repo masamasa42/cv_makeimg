@@ -56,7 +56,7 @@ def func_makeimg(imageArray,x,y,color_a,color_b,color_c,color_d):
     yoffset = y+barsize*2
     pixsize = 4
     tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for j in range(0,lim*2,2):
         for k in range(0,lim,2):
@@ -79,7 +79,7 @@ def func_makeimg(imageArray,x,y,color_a,color_b,color_c,color_d):
     yoffset = y+barsize*2
     pixsize = 3
     tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for j in range(0,lim*2,2):
         for k in range(0,lim,2):
@@ -102,7 +102,7 @@ def func_makeimg(imageArray,x,y,color_a,color_b,color_c,color_d):
     yoffset = y+barsize*2
     pixsize = 2
     tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for j in range(0,lim*2,2):
         for k in range(0,lim,2):
@@ -126,7 +126,7 @@ def func_makeimg(imageArray,x,y,color_a,color_b,color_c,color_d):
     yoffset = y+barsize*2
     pixsize = 1
     tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for j in range(0,lim*2,2):
         for k in range(0,lim,2):
@@ -197,7 +197,7 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     yoffset = y+barsize*2
     pixsize = 4
     tmp = str(barsize*2) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for k in range(0,lim,color_num):
         for h in range(yoffset, yoffset+barsize*2):
@@ -219,7 +219,7 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     yoffset = y+barsize*2
     pixsize = 3
     tmp = str(barsize*2) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for k in range(0,lim,color_num):
         for h in range(yoffset, yoffset+barsize*2):
@@ -241,7 +241,7 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     yoffset = y+barsize*2
     pixsize = 2
     tmp = str(barsize*2) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for k in range(0,lim,color_num):
         for h in range(yoffset, yoffset+barsize*2):
@@ -263,7 +263,7 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     yoffset = y+barsize*2
     pixsize = 1
     tmp = str(barsize*2) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for k in range(0,lim,color_num):
         for h in range(yoffset, yoffset+barsize*2):
@@ -334,7 +334,7 @@ def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     yoffset = y+barsize*2
     pixsize = 4
     tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for j in range(0,lim*2,1):
         for k in range(0,lim,1):
@@ -355,7 +355,7 @@ def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     yoffset = y+barsize*2
     pixsize = 3
     tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for j in range(0,lim*2,1):
         for k in range(0,lim,1):
@@ -376,7 +376,7 @@ def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     yoffset = y+barsize*2
     pixsize = 2
     tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for j in range(0,lim*2,1):
         for k in range(0,lim,1):
@@ -397,7 +397,7 @@ def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     yoffset = y+barsize*2
     pixsize = 1
     tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for j in range(0,lim*2,1):
         for k in range(0,lim,1):
@@ -463,7 +463,7 @@ def func_delta(imageArray,x,y,color_a,color_b,color_c,color_d):
     pixsize = 6
     pixgap = 3
     tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for j in range(0,lim*2,1):
         for k in range(0,lim,1):
@@ -492,7 +492,7 @@ def func_delta(imageArray,x,y,color_a,color_b,color_c,color_d):
     pixsize = 4
     pixgap = 2
     tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for j in range(0,lim*2,1):
         for k in range(0,lim,1):
@@ -521,7 +521,7 @@ def func_delta(imageArray,x,y,color_a,color_b,color_c,color_d):
     pixsize = 2
     pixgap = 1
     tmp = str(pixsize) + "*" + str(pixsize)
-    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, color_font , 1, cv2.LINE_AA)
+    cv2.putText(imageArray, tmp, (xoffset, yoffset +barsize*2+10), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.6, color_font , 1, cv2.LINE_AA)
     lim = barsize//pixsize
     for j in range(0,lim*2,1):
         for k in range(0,lim,1):
@@ -555,15 +555,14 @@ def makeimg(filename,color_a,color_ak,color_b,color_bk,color_c,color_ck):
     for h in range(height):
         for w in range(width):
             imageArray[h, w] = color_bg
-    cv2.imwrite("blank.bmp", imageArray);
-     
-    print("===")
-    func_mosaic(imageArray,0,0,color_ak,color_b,color_c,color_d,3)
-    func_mosaic(imageArray,0,300,color_a,color_bk,color_c,color_d,3)
-    func_mosaic(imageArray,400,0,color_a,color_b,color_ck,color_d,3)
-    func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,3)
-    print("===")
+    #cv2.imwrite("blank.bmp", imageArray);
+    color_d=(195,201,202)
 
+    print("===begin===")
+    func_delta(imageArray,0,0,color_ak,color_b,color_c,color_d)
+    func_delta(imageArray,0,250,color_a,color_bk,color_c,color_d)
+    func_delta(imageArray,400,0,color_a,color_b,color_ck,color_d)
+    func_delta(imageArray,400,250,color_a,color_b,color_c,color_d)
     #func_makeimg(imageArray,0,0,color_a,color_bk,color_c,color_d)
     #func_makeimg(imageArray,0,300,color_a,color_bk,color_c,color_d)
     #func_makeimg(imageArray,400,0,color_a,color_b,color_ck,color_d)
@@ -588,7 +587,13 @@ def makeimg(filename,color_a,color_ak,color_b,color_bk,color_c,color_ck):
     #func_delta(imageArray,0,300,color_a,color_bk,color_c,color_d)
     #func_delta(imageArray,400,0,color_a,color_b,color_ck,color_d)
     #func_delta(imageArray,400,300,color_a,color_b,color_c,color_d)
+
+    tmp="filename:"+filename
+    print(filename)
+    cv2.putText(imageArray, tmp, (1,500),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    
     cv2.imwrite(filename, imageArray)
+    print("=== end ===")
 
 color_bg = [255,255,255]
 color_font = [0,0,0]
@@ -598,14 +603,35 @@ gap = width//16
 offset = height//4
 barsize = width//16
 pixsize = barsize
-filename="sample.bmp"
-color_a=[255, 255, 160]
-color_ak=[0,0,0]
-color_b=[255, 160, 255]
-color_bk=[0,0,0]
-color_c=[160, 255, 255]
-color_ck=[0,0,0]
-color_d=[255, 255, 255]
 
-makeimg(filename,color_a,color_ak,color_b,color_bk,color_c,color_ck)
+#色指定はそれぞれbgr順
 
+color_a_num=2
+color_an=[1,3]
+color_a=[[198,196,180],
+[160,119,36]]
+color_ak=[[130,124,109],
+[111,70,0]]
+
+color_b_num=2
+color_bn=[18,17]
+color_b=[[110,117,206],
+[145,80,195]]
+color_bk=[[83,84,147],
+[105,56,136]]
+
+color_c_num=2
+color_cn=[46,40]
+color_c=[[54,188,197],
+[0,161,203]]
+color_ck=[[36,122,125],
+[0,118,149]]
+
+#color_d=[255, 255, 255]
+
+for i in range(0,color_a_num):
+    for j in range(0,color_b_num):
+        for k in range(0,color_c_num):
+            #filename="sample.bmp"
+            filename="img_delta_c"+str(color_an[i])+"_m"+str(color_bn[j])+"_y"+str(color_cn[k])+".bmp"
+            makeimg(filename,color_a[i],color_ak[i],color_b[j],color_bk[j],color_c[k],color_ck[k])
