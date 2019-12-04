@@ -10,6 +10,7 @@ import cv2
 import numpy as np
 from PIL import ImageFont, ImageDraw, Image
 
+#color_bg = [0,0,0]
 color_bg = [255,255,255]
 color_font = [0,0,0]
 #color_font_n = [255,255,255]
@@ -65,6 +66,9 @@ color_d=[255, 255, 255]
 
 tmp = "BGR:"
 cv2.putText(imageArray, tmp, (0,0),cv2.FONT_HERSHEY_PLAIN, 0.5, color_font , 1, cv2.LINE_AA)
+
+#
+alpha=128
 
 #pix=50
 pix=64
@@ -144,17 +148,58 @@ font = ImageFont.truetype(fontpath, 12) #
 img_pil = Image.fromarray(imageArray) #配列の各値を8bit(1byte)整数型(0～255)をPIL Imageに変換。
 draw = ImageDraw.Draw(img_pil) # drawインスタンスを生成
 
-draw.text((1*pix+2,7*pix+8), "パネル白", font = font , fill = (0,0,0) ) # drawにテキストを記載 fill:色 BGRA (RGB)
-draw.text((2*pix+2,7*pix+8), "パネル黒", font = font , fill = (0,0,0) ) # drawにテキストを記載 fill:色 BGRA (RGB)
-draw.text((4*pix+2,7*pix+8), "シート白", font = font , fill = (0,0,0) ) # drawにテキストを記載 fill:色 BGRA (RGB)
-draw.text((5*pix+2,7*pix+8), "シート黒", font = font , fill = (0,0,0) ) # drawにテキストを記載 fill:色 BGRA (RGB)
+draw.text((1*pix+4,7*pix+8), "パネル白", font = font , fill = (0,0,0) ) # drawにテキストを記載 fill:色 BGRA (RGB)
+draw.text((2*pix+4,7*pix+8), "パネル黒", font = font , fill = (0,0,0) ) # drawにテキストを記載 fill:色 BGRA (RGB)
+draw.text((4*pix+4,7*pix+8), "シート白", font = font , fill = (0,0,0) ) # drawにテキストを記載 fill:色 BGRA (RGB)
+draw.text((5*pix+4,7*pix+8), "シート黒", font = font , fill = (0,0,0) ) # drawにテキストを記載 fill:色 BGRA (RGB)
 imageArray = np.array(img_pil) # PIL を配列に変換
 
 
 
 #stripe 各色テスト
+#newimg = imageArray.copy()
+#newimg[:, :, 3] = 128
+
+#hutomei = np.where(imageArray[:, :, 3] != 0)  #アルファチャンネルが透明でないインデックスを取得
+#three = np.ones((len(hutomei[1])), dtype="int8") * 3  # 3だけからなる配列を作成
+#index = tuple((hutomei[0], hutomei[1], three))  #合わせたインデックスを作成　
+#newimg[index] = 128
+
 print("===")
 
-cv2.imwrite("sample.bmp", imageArray)
+#■通常の出力
+#tmpstr="alpha_param(transparency):"+ str(0) +" (0:transparent 255:opaque)"
+#cv2.putText(imageArray, tmpstr, (1,500),cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, [0,0,0] , 1, cv2.LINE_AA)
+cv2.imwrite("sample.png", imageArray)
+
+#■アルファブレンド
+#（0:合成結果、1:透過色、2:背景色、a:透過率）
+#r0 = r1 * a + r2 * (1 - a)
+trans=60
+for i in range(0,height):
+    for j in range(0,width):
+        a=imageArray[i, j][0]*(100-trans)//100 + 255*trans//100
+        b=imageArray[i, j][1]*(100-trans)//100 + 255*trans//100
+        c=imageArray[i, j][2]*(100-trans)//100 + 255*trans//100
+        imageArray[i, j] = [a,b,c]
+filename="sample_trans_"+str(trans)+".png"
+tmpstr="trans rate:"+ str(trans)
+cv2.putText(imageArray, tmpstr, (1,500),cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.7, [0,0,0] , 1, cv2.LINE_AA)
+cv2.imwrite(filename, imageArray)
+
+#■αチャンネル設定
+alpha=255
+#一旦閉じたものを再読み込み
+newimg=cv2.imread("sample.png",cv2.IMREAD_UNCHANGED)
+#newimg.shape(400,338,4)
+#newimg[:, :, 3] = 128
+b_channel, g_channel, r_channel = cv2.split(newimg)
+alpha_channel = np.ones(b_channel.shape, dtype=b_channel.dtype) * alpha
+img_BGRA = cv2.merge((b_channel, g_channel, r_channel, alpha_channel))
+
+filename="sample_alpha_"+str(alpha)+".png"
+tmpstr="alpha_param(transparency):"+ str(alpha) +" (0:transparent 255:opaque)"
+cv2.putText(img_BGRA, tmpstr, (1,500),cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.7, [0,0,0] , 1, cv2.LINE_AA)
+cv2.imwrite(filename, img_BGRA)
 
 
