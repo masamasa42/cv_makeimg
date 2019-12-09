@@ -8,13 +8,20 @@ import cv2
 import numpy as np
 import os
 
-def func_makeimg(imageArray,x,y,color_a,color_b,color_c,color_d):
+def func_makeimg(imageArray,x,y,color_a,color_b,color_c,color_d,color_at,color_bt,color_ct):
     #global imageArray
     #print(x)
     #print(y)
     tmp = "BGR:"
     cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+6),cv2.FONT_HERSHEY_PLAIN, 0.5, color_font , 1, cv2.LINE_AA)
 
+    tmp="trans_c_w:"+str(color_at[0])+" trans_c_k:"+str(color_at[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+26),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    tmp="trans_m_w:"+str(color_bt[0])+" trans_m_k:"+str(color_bt[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+36),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    tmp="trans_y_w:"+str(color_ct[0])+" trans_y_k:"+str(color_ct[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+46),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    
     for h in range(y+gap*0, y+gap*1):
         for w in range(x+gap*0, x+gap*1):
             imageArray[h, w] = color_a
@@ -146,10 +153,17 @@ def func_makeimg(imageArray,x,y,color_a,color_b,color_c,color_d):
     #=====
     
     
-def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
+def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_at,color_bt,color_ct,color_num):
     tmp = "BGR:"
     cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+6),cv2.FONT_HERSHEY_PLAIN, 0.5, color_font , 1, cv2.LINE_AA)
 
+    tmp="trans_c_w:"+str(color_at[0])+" trans_c_k:"+str(color_at[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+26),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    tmp="trans_m_w:"+str(color_bt[0])+" trans_m_k:"+str(color_bt[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+36),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    tmp="trans_y_w:"+str(color_ct[0])+" trans_y_k:"+str(color_ct[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+46),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    
     if(color_num<3):
         color_num = 3
     if(color_num>4):
@@ -283,10 +297,33 @@ def func_stripe(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     #=====
     
 
-def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
+def func_mosaic(imageArray,x,y,color_a_in,color_b_in,color_c_in,color_d,color_at,color_bt,color_ct,color_num,flg):
+    color_a=[[0],[0],[0]]
+    color_b=[[0],[0],[0]]
+    color_c=[[0],[0],[0]]
+    for i in range(0,3):
+        if(flg!=0):
+            color_a[i]=color_a_in[i]*(100-color_at[0])//100 + 255*color_at[0]//100
+        else:
+            color_a[i]=color_a_in[i]
+        if(flg!=1):
+            color_b[i]=color_b_in[i]*(100-color_bt[0])//100 + 255*color_bt[0]//100
+        else:
+            color_b[i]=color_b_in[i]
+        if(flg!=2):
+            color_c[i]=color_c_in[i]*(100-color_ct[0])//100 + 255*color_ct[0]//100
+        else:
+            color_c[i]=color_c_in[i]
     tmp = "BGR:"
     cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+6),cv2.FONT_HERSHEY_PLAIN, 0.5, color_font , 1, cv2.LINE_AA)
 
+    tmp="trans_c_w:"+str(color_at[0])+" trans_c_k:"+str(color_at[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+26),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    tmp="trans_m_w:"+str(color_bt[0])+" trans_m_k:"+str(color_bt[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+36),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    tmp="trans_y_w:"+str(color_ct[0])+" trans_y_k:"+str(color_ct[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+46),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    
     if(color_num<3):
         color_num = 3
     if(color_num>4):
@@ -416,9 +453,33 @@ def func_mosaic(imageArray,x,y,color_a,color_b,color_c,color_d,color_num):
     #=====
 
 
-def func_delta(imageArray,x,y,color_a,color_b,color_c,color_d):
+def func_delta(imageArray,x,y,color_a_in,color_b_in,color_c_in,color_d,color_at,color_bt,color_ct,flg):
+
+    color_a=[[0],[0],[0]]
+    color_b=[[0],[0],[0]]
+    color_c=[[0],[0],[0]]
+    for i in range(0,3):
+        if(flg!=0):
+            color_a[i]=color_a_in[i]*(100-color_at[0])//100 + 255*color_at[0]//100
+        else:
+            color_a[i]=color_a_in[i]
+        if(flg!=1):
+            color_b[i]=color_b_in[i]*(100-color_bt[0])//100 + 255*color_bt[0]//100
+        else:
+            color_b[i]=color_b_in[i]
+        if(flg!=2):
+            color_c[i]=color_c_in[i]*(100-color_ct[0])//100 + 255*color_ct[0]//100
+        else:
+            color_c[i]=color_c_in[i]
     tmp = "BGR:"
     cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+6),cv2.FONT_HERSHEY_PLAIN, 0.5, color_font , 1, cv2.LINE_AA)
+
+    tmp="trans_c_w:"+str(color_at[0])+" trans_c_k:"+str(color_at[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+26),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    tmp="trans_m_w:"+str(color_bt[0])+" trans_m_k:"+str(color_bt[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+36),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
+    tmp="trans_y_w:"+str(color_ct[0])+" trans_y_k:"+str(color_ct[1])
+    cv2.putText(imageArray, tmp, (x+gap*0+1,y+gap*1+46),cv2.FONT_HERSHEY_PLAIN, 0.6, [0,0,0] , 1, cv2.LINE_AA)
 
     for h in range(y+gap*0, y+gap*1):
         for w in range(x+gap*0, x+gap*1):
@@ -547,7 +608,7 @@ def func_delta(imageArray,x,y,color_a,color_b,color_c,color_d):
     #=====
 
 
-def makeimg(filename,color_a,color_ak,color_b,color_bk,color_c,color_ck):
+def makeimg(filename,color_a,color_ak,color_b,color_bk,color_c,color_ck,color_at,color_bt,color_ct):
 
 
     imageArray = np.zeros((height, width, 3), np.uint8)
@@ -560,34 +621,35 @@ def makeimg(filename,color_a,color_ak,color_b,color_bk,color_c,color_ck):
     color_d=(195,201,202)
 
     print("===begin===")
-    func_delta(imageArray,0,0,color_ak,color_b,color_c,color_d)
-    func_delta(imageArray,0,250,color_a,color_bk,color_c,color_d)
-    func_delta(imageArray,400,0,color_a,color_b,color_ck,color_d)
-    func_delta(imageArray,400,250,color_a,color_b,color_c,color_d)
-    #func_makeimg(imageArray,0,0,color_a,color_bk,color_c,color_d)
-    #func_makeimg(imageArray,0,300,color_a,color_bk,color_c,color_d)
-    #func_makeimg(imageArray,400,0,color_a,color_b,color_ck,color_d)
-    #func_makeimg(imageArray,400,300,color_a,color_b,color_c,color_d)
-    #func_stripe(imageArray,0,0,color_ak,color_b,color_c,color_d,3)
-    #func_stripe(imageArray,0,300,color_a,color_bk,color_c,color_d,3)
-    #func_stripe(imageArray,400,0,color_a,color_b,color_ck,color_d,3)
-    #func_stripe(imageArray,400,300,color_a,color_b,color_c,color_d,3)
-    #func_stripe(imageArray,0,0,color_ak,color_b,color_c,color_d,4)
-    #func_stripe(imageArray,0,300,color_a,color_bk,color_c,color_d,4)
-    #func_stripe(imageArray,400,0,color_a,color_b,color_ck,color_d,4)
-    #func_stripe(imageArray,400,300,color_a,color_b,color_c,color_d,4)
-    #func_mosaic(imageArray,0,0,color_ak,color_b,color_c,color_d,3)
-    #func_mosaic(imageArray,0,300,color_a,color_bk,color_c,color_d,3)
-    #func_mosaic(imageArray,400,0,color_a,color_b,color_ck,color_d,3)
-    #func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,3)
-    #func_mosaic(imageArray,0,0,color_ak,color_b,color_c,color_d,4)
-    #func_mosaic(imageArray,0,300,color_a,color_bk,color_c,color_d,4)
-    #func_mosaic(imageArray,400,0,color_a,color_b,color_ck,color_d,4)
-    #func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,4)
-    #func_delta(imageArray,0,0,color_ak,color_b,color_c,color_d)
-    #func_delta(imageArray,0,300,color_a,color_bk,color_c,color_d)
-    #func_delta(imageArray,400,0,color_a,color_b,color_ck,color_d)
-    #func_delta(imageArray,400,300,color_a,color_b,color_c,color_d)
+    func_delta(imageArray,0,0,color_ak,color_b,color_c,color_d,color_at,color_bt,color_ct,0)
+    func_delta(imageArray,0,250,color_a,color_bk,color_c,color_d,color_at,color_bt,color_ct,1)
+    func_delta(imageArray,400,0,color_a,color_b,color_ck,color_d,color_at,color_bt,color_ct,2)
+    func_delta(imageArray,400,250,color_a,color_b,color_c,color_d,color_at,color_bt,color_ct,3)
+    #func_mosaic(imageArray,0,0,color_ak,color_b,color_c,color_d,color_at,color_bt,color_ct,3,0)
+    #func_mosaic(imageArray,0,300,color_a,color_bk,color_c,color_d,color_at,color_bt,color_ct,3,1)
+    #func_mosaic(imageArray,400,0,color_a,color_b,color_ck,color_d,color_at,color_bt,color_ct,3,2)
+    #func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,color_at,color_bt,color_ct,3,3)
+
+    #func_makeimg(imageArray,0,0,color_a,color_bk,color_c,color_d,color_at,color_bt,color_ct)
+    #func_makeimg(imageArray,0,300,color_a,color_bk,color_c,color_d,color_at,color_bt,color_ct)
+    #func_makeimg(imageArray,400,0,color_a,color_b,color_ck,color_d,color_at,color_bt,color_ct)
+    #func_makeimg(imageArray,400,300,color_a,color_b,color_c,color_d,color_at,color_bt,color_ct)
+    #func_stripe(imageArray,0,0,color_ak,color_b,color_c,color_d,color_at,color_bt,color_ct,3)
+    #func_stripe(imageArray,0,300,color_a,color_bk,color_c,color_d,color_at,color_bt,color_ct,3)
+    #func_stripe(imageArray,400,0,color_a,color_b,color_ck,color_d,color_at,color_bt,color_ct,3)
+    #func_stripe(imageArray,400,300,color_a,color_b,color_c,color_d,color_at,color_bt,color_ct,3)
+    #func_stripe(imageArray,0,0,color_ak,color_b,color_c,color_d,color_at,color_bt,color_ct,4)
+    #func_stripe(imageArray,0,300,color_a,color_bk,color_c,color_d,color_at,color_bt,color_ct,4)
+    #func_stripe(imageArray,400,0,color_a,color_b,color_ck,color_d,color_at,color_bt,color_ct,4)
+    #func_stripe(imageArray,400,300,color_a,color_b,color_c,color_d,color_at,color_bt,color_ct,4)
+    #func_mosaic(imageArray,0,0,color_ak,color_b,color_c,color_d,color_at,color_bt,color_ct,4)
+    #func_mosaic(imageArray,0,300,color_a,color_bk,color_c,color_d,color_at,color_bt,color_ct,4)
+    #func_mosaic(imageArray,400,0,color_a,color_b,color_ck,color_d,color_at,color_bt,color_ct,4)
+    #func_mosaic(imageArray,400,300,color_a,color_b,color_c,color_d,color_at,color_bt,color_ct,4)
+    #func_delta(imageArray,0,0,color_ak,color_b,color_c,color_d,color_at,color_bt,color_ct)
+    #func_delta(imageArray,0,300,color_a,color_bk,color_c,color_d,color_at,color_bt,color_ct)
+    #func_delta(imageArray,400,0,color_a,color_b,color_ck,color_d,color_at,color_bt,color_ct)
+    #func_delta(imageArray,400,300,color_a,color_b,color_c,color_d,color_at,color_bt,color_ct)
 
     tmp="filename:"+filename
     print(filename)
@@ -622,39 +684,48 @@ if(os.path.exists('./cvtest_data.txt')):
     color_a=[]
     color_an=[]
     color_ak=[]
+    color_at=[]
     color_b=[]
     color_bn=[]
     color_bk=[]
+    color_bt=[]
     color_c=[]
     color_cn=[]
     color_ck=[]
+    color_ct=[]
     for i in range(1,color_a_num+1):
         tmp = lines[i].split(',')
         tmpn=0
         tmp_c1=[0,0,0]
         tmp_c2=[0,0,0]
-        tmpn,tmp_c1[0],tmp_c1[1],tmp_c1[2],tmp_c2[0],tmp_c2[1],tmp_c2[2]= list(map(lambda a: int(a), tmp))
+        tmp_ct=[0,0]
+        tmpn,tmp_c1[2],tmp_c1[1],tmp_c1[0],tmp_c2[2],tmp_c2[1],tmp_c2[0],tmp_ct[0],tmp_ct[1]= list(map(lambda a: int(a), tmp))
         color_an.append(tmpn)
         color_a.append(tmp_c1)
         color_ak.append(tmp_c2)
+        color_at.append(tmp_ct)
     for i in range(color_a_num+1,color_a_num+1+color_b_num):
         tmp = lines[i].split(',')
         tmpn=0
         tmp_c1=[0,0,0]
         tmp_c2=[0,0,0]
-        tmpn,tmp_c1[0],tmp_c1[1],tmp_c1[2],tmp_c2[0],tmp_c2[1],tmp_c2[2]= list(map(lambda a: int(a), tmp))
+        tmp_ct=[0,0]
+        tmpn,tmp_c1[2],tmp_c1[1],tmp_c1[0],tmp_c2[2],tmp_c2[1],tmp_c2[0],tmp_ct[0],tmp_ct[1]= list(map(lambda a: int(a), tmp))
         color_bn.append(tmpn)
         color_b.append(tmp_c1)
         color_bk.append(tmp_c2)
+        color_bt.append(tmp_ct)
     for i in range(color_a_num+1+color_b_num,color_a_num+1+color_b_num+color_c_num):
         tmp = lines[i].split(',')
         tmpn=0
         tmp_c1=[0,0,0]
         tmp_c2=[0,0,0]
-        tmpn,tmp_c1[0],tmp_c1[1],tmp_c1[2],tmp_c2[0],tmp_c2[1],tmp_c2[2]= list(map(lambda a: int(a), tmp))
+        tmp_ct=[0,0]
+        tmpn,tmp_c1[2],tmp_c1[1],tmp_c1[0],tmp_c2[2],tmp_c2[1],tmp_c2[0],tmp_ct[0],tmp_ct[1]= list(map(lambda a: int(a), tmp))
         color_cn.append(tmpn)
         color_c.append(tmp_c1)
         color_ck.append(tmp_c2)
+        color_ct.append(tmp_ct)
 
     test_str="color_a_num:"+str(color_a_num)+" color_b_num:"+str(color_b_num)+" color_c_num:"+str(color_c_num)
     print(test_str)
@@ -669,26 +740,30 @@ if(os.path.exists('./cvtest_data.txt')):
     print(color_c)
     print(color_ck)
 else:
-    color_a_num=1
+    #test用 CMYそれぞれ2色づつ設定
+    color_a_num=2
     color_an=[1,3]
     color_a=[[198,196,180],
     [160,119,36]]
     color_ak=[[130,124,109],
     [111,70,0]]
+    color_at=[0,0]
     
-    color_b_num=1
+    color_b_num=2
     color_bn=[18,17]
     color_b=[[110,117,206],
     [145,80,195]]
     color_bk=[[83,84,147],
     [105,56,136]]
+    color_bt=[0,0]
     
-    color_c_num=1
+    color_c_num=2
     color_cn=[46,40]
     color_c=[[54,188,197],
     [0,161,203]]
     color_ck=[[36,122,125],
     [0,118,149]]
+    color_ct=[0,0]
     
 #color_d=[255, 255, 255]
 
@@ -696,5 +771,5 @@ for i in range(0,color_a_num):
     for j in range(0,color_b_num):
         for k in range(0,color_c_num):
             #filename="sample.bmp"
-            filename="img_delta_c"+str(color_an[i])+"_m"+str(color_bn[j])+"_y"+str(color_cn[k])+".bmp"
-            makeimg(filename,color_a[i],color_ak[i],color_b[j],color_bk[j],color_c[k],color_ck[k])
+            filename="img_delta_c"+str(color_an[i]).rjust(3, '0')+"_m"+str(color_bn[j]).rjust(3, '0')+"_y"+str(color_cn[k]).rjust(3, '0')+".bmp"
+            makeimg(filename,color_a[i],color_ak[i],color_b[j],color_bk[j],color_c[k],color_ck[k],color_at[i],color_bt[j],color_ct[k])
