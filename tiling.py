@@ -48,6 +48,17 @@ if(len(sys.argv)==2):
     outfilename += "_tile"
     outfilename += ".bmp"
     makeimg(outfilename, tile)
+elif(len(sys.argv)==3):
+    #2ファイルドロップ実行時 stripe処理
+    filepath=sys.argv[1]
+
+    a = cv2.imread(sys.argv[1])
+    b = cv2.imread(sys.argv[2])
+    stripe = cv2.hconcat([a,b])
+    outfilename = "out"
+    outfilename += "_stripe"
+    outfilename += ".bmp"
+    makeimg(outfilename, stripe)
 elif(len(sys.argv)==4):
     #3ファイルドロップ実行時 delta処理 mosaic処理を行った画像を出力する
     a = cv2.imread(sys.argv[1])
